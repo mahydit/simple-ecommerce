@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-// import { MustMatch } from '../../../helpers/must-match.validator';
 
 @Component({
   selector: 'app-register',
@@ -19,9 +18,6 @@ export class RegisterComponent implements OnInit {
       'password': new FormControl(null,[Validators.required, Validators.minLength(8)]),
       'confirmPassword': new FormControl(null,[Validators.required,]),
     }
-    // , {
-      // validator: MustMatch('password', 'confirmPassword'),
-  // }
   );
   }
 
