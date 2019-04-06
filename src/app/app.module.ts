@@ -14,6 +14,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ProductlistComponent } from './components/productlist/productlist.component';
+import { HttpClientModule } from "@angular/common/http";
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,15 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    ProductlistComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
