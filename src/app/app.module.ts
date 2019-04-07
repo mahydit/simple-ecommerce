@@ -17,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductlistComponent } from './components/productlist/productlist.component';
 import { HttpClientModule } from "@angular/common/http";
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
