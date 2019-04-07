@@ -16,14 +16,12 @@ export class SingleproductComponent implements OnInit {
   ngOnInit() {
     this.http.get("../../../assets/products.json").subscribe(data => {
       let products = data["arrayOfProducts"];
-      let found = false;
       products.forEach((product: object) => {
         if (product['id'] == this.route.snapshot.params.id) {
-          found = true;
           this.product = product;
         }
       });
-      if (!found) {
+      if (!this.product) {
         this.router.navigate(["404"]);
       }
     });
