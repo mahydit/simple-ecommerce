@@ -8,8 +8,8 @@
         <div class="row">
           <a href="product/{{product.id}}" class="stretched-link col"> <span class="font-color"><i
                 class="fas fa-info"></i></span></a>
-          <a href="cart" class="col"><span class="font-color"><i class="fas fa-shopping-cart"></i></span></a>
-          <a href="wishlist" class="col"><span class="font-color"><i class="fas fa-heart"></i></span></a>
+          <a class="col" href="#" (click)="addToCart(product.id)"><span class="font-color"><i class="fas fa-shopping-cart"></i></span></a>
+          <a class="col" href="#" (click)="addToWishlist(product.id)"><span class="font-color"><i class="fas fa-heart"></i></span></a>
         </div>
       </div>
       <div class="col-auto d-none d-lg-block">
