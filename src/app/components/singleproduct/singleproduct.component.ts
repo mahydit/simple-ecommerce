@@ -27,4 +27,23 @@ export class SingleproductComponent implements OnInit {
     });
   }
 
+  addToCart(id) {
+    console.log("cart",id);
+    let productsInCart = [];
+    if (localStorage.getItem('productsInCart')) {
+      productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
+      if (productsInCart.length) {
+
+      } else {
+  
+      }
+    }
+    
+    // localStorage.setItem('productsInCart', JSON.stringify(productsInCart));
+  }
+
+  addToWishlist(id){
+    console.log("wishlist",id);
+  }
+
 }
