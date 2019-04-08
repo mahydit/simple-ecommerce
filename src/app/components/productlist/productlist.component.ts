@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from "@angular/common/http";
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from "../../product";
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-productlist',
@@ -11,29 +11,14 @@ import { Product } from "../../product";
 export class ProductlistComponent implements OnInit {
   products: Product[];
 
-  //private http: HttpClient,
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private cartSerivce: CartService) {}
 
   ngOnInit() {
-    // this.http.get("../../../assets/products.json").subscribe(data => {
-    //   this.products = data["arrayOfProducts"];
-    // });
     this.products = this.productService.findAll();
   }
 
   addToCart(id) {
-    console.log("cart",id);
-    let productsInCart = [];
-    if (localStorage.getItem('productsInCart')) {
-      productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
-      if (productsInCart.length) {
-
-      } else {
-  
-      }
-    }
-    
-    // localStorage.setItem('productsInCart', JSON.stringify(productsInCart));
+    this.cartSerivce.add(id);
   }
 
   addToWishlist(id){
