@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+// import { HttpClient } from "@angular/common/http";
+import { ProductService } from 'src/app/services/product.service';
+import { Product } from "../../product";
 
 @Component({
   selector: 'app-productlist',
@@ -7,14 +9,16 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ['./productlist.component.scss']
 })
 export class ProductlistComponent implements OnInit {
-  products: object[];
+  products: Product[];
 
-  constructor(private http: HttpClient) {}
+  //private http: HttpClient,
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.http.get("../../../assets/products.json").subscribe(data => {
-      this.products = data["arrayOfProducts"];
-    });
+    // this.http.get("../../../assets/products.json").subscribe(data => {
+    //   this.products = data["arrayOfProducts"];
+    // });
+    this.products = this.productService.findAll();
   }
 
   addToCart(id) {
