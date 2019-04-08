@@ -11,12 +11,7 @@ export class ProductService {
   private products: Product[];
 
   constructor(private http: HttpClient) { 
-    // this.http.get("../../assets/products.json").subscribe(data => {
-    //   this.products = data["arrayOfProducts"];
-    //   console.log(this.products);
-    // });
     this.products = ProductsFile['arrayOfProducts'];
-    // console.log(this.products);
   }
 
   findAll(): Product[] {
@@ -28,11 +23,11 @@ export class ProductService {
   }
 
   private getSelectedIndex(id: string) {
-      for (var i = 0; i < this.products.length; i++) {
-          if (this.products[i].id == id) {
-              return i;
-          }
+    for (var i = 0; i < this.products.length; i++) {
+      if (this.products[i].id == id) {
+        return i;
       }
-      return -1;
+    }
+    return -1;
   }
 }
