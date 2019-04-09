@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { SingleproductComponent } from './components/singleproduct/singleproduct.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,7 +22,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
   declarations: [
     AppComponent,
     RegisterComponent,
-    LogoutComponent,
     WishlistComponent,
     SingleproductComponent,
     LoginComponent,
