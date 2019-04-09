@@ -5,7 +5,7 @@ import { Product } from 'src/app/product';
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
-  styleUrls: ['./wishlist.component.scss']
+  styleUrls: []
 })
 export class WishlistComponent implements OnInit {
   private products: Product[] = [];
