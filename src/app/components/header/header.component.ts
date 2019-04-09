@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/services/cart.service';
+import { StreamService } from 'src/app/services/stream.service';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +7,17 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  totalItems : number = 0;
+  cartCount: any;
   show : boolean = false;
 
-  constructor(private cartService : CartService) { }
+  constructor(
+    private streamService: StreamService
+    ) {
+      this.streamService.getCartCount().subscribe(res => this.cartCount=res);
+    }
 
   ngOnInit() {
-    this.totalItems = this.cartService.calculateTotalItems();
-    if(this.totalItems>0){
+    if(this.cartCount>=0){
       this.show = true;
     }
   }

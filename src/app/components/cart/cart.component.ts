@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
 import { Item } from "../../item";
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { StreamService } from 'src/app/services/stream.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,19 +14,24 @@ export class CartComponent implements OnInit {
 	private totalPrice: number = 0;
 	private totalItems: number = 0;
 
-  constructor(private activatedRoute: ActivatedRoute,private productService: ProductService, private cartSerivce: CartService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private cartService: CartService,
+    private streamService: StreamService
+    ) { }
 
   ngOnInit() {
-		this.items = this.cartSerivce.loadCart();
-		this.totalPrice = this.cartSerivce.calculateTotalPrice();
-		this.totalItems = this.cartSerivce.calculateTotalItems();   
+		this.items = this.cartService.loadCart();
+		this.totalPrice = this.cartService.calculateTotalPrice();
+		this.totalItems = this.cartService.calculateTotalItems();   
   }
 
   removeFromCart(id: string): void {
-    this.cartSerivce.remove(id);
-		this.items = this.cartSerivce.loadCart();
-		this.totalPrice = this.cartSerivce.calculateTotalPrice();
-		this.totalItems = this.cartSerivce.calculateTotalItems();   
+    this.cartService.remove(id);
+		this.items = this.cartService.loadCart();
+		this.totalPrice = this.cartService.calculateTotalPrice();
+    this.totalItems = this.cartService.calculateTotalItems();
+    this.streamService.setCartCount( this.totalItems.toString());
   }
 
 }
