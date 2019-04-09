@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Product } from "../product";
-import { HttpClient } from "@angular/common/http";
 import ProductsFile from "../../assets/products.json";
 
 
@@ -10,7 +9,7 @@ import ProductsFile from "../../assets/products.json";
 export class ProductService {
   private products: Product[];
 
-  constructor(private http: HttpClient) { 
+  constructor() { 
     this.products = ProductsFile['arrayOfProducts'];
   }
 
