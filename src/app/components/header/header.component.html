@@ -14,7 +14,8 @@
         <a class="nav-link" href="wishlist"><i class="fas fa-heart"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cart"><i class="fas fa-shopping-cart"></i></a>
+          <a class="nav-link" href="cart"><i class="fa fa-shopping-cart" >&#xf07a;</i>
+            <span class='badge badge-warning' id='lblCartCount' [hidden]="!show"> {{totalItems}} </span></a>
       </li>
     </ul>
   </div>
