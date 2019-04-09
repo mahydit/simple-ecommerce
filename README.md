@@ -6,6 +6,13 @@ This is a simple E-commerce project with login and register forms. It also has a
 ## Installation
 
 Clone the project then run
-`npm install`
 
-Finally run the serve using `ng serve`
+```bash
+npm install
+```
+
+Finally run the serve using 
+
+```bash
+ng serve
+```
