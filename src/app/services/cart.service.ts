@@ -10,25 +10,22 @@ import { Item } from "../item";
 export class CartService {
   private items: Item[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute,private productService: ProductService) { }
+  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService) {}
 
   loadCart(): Item[] {
-		this.items = [];
+    this.items = [];
     let cart = JSON.parse(localStorage.getItem('cart'));
-    if(cart)
-    {
+    if (cart) {
       this.items = cart;
     }
     return this.items;
   }
 
   calculateTotalPrice(): number {
-    let totalPrice:number = 0;
+    let totalPrice: number = 0;
     let cart = JSON.parse(localStorage.getItem('cart'));
-    if(cart)
-    {
-      cart.map(function(item:Item) {
-        console.log(item, item.product.price,item.quantity, item.product.price );
+    if (cart) {
+      cart.map(function (item: Item) {
         totalPrice += item.product.price * item.quantity;
       });
     }
@@ -38,9 +35,8 @@ export class CartService {
   calculateTotalItems(): number {
     let totalItems: number = 0;
     let cart = JSON.parse(localStorage.getItem('cart'));
-    if(cart)
-    {
-      cart.map(function(item:Item) {
+    if (cart) {
+      cart.map(function (item: Item) {
         totalItems += item.quantity;
       });
     }
@@ -49,30 +45,26 @@ export class CartService {
 
   remove(id: string): void {
     let cart: any = JSON.parse(localStorage.getItem('cart'));
-    cart.map(function(item:Item) {
+    cart.map(function (item: Item) {
       if (item.product.id == id) {
-            if(item.quantity <= 1)
-            {
-              cart.splice(item, 1);
-            }
-            else
-            {
-              item.quantity -= 1;
-            }
-        	}
+        if (item.quantity <= 1) {
+          cart.splice(item, 1);
+        } else {
+          item.quantity -= 1;
+        }
+      }
     });
-		localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   add(id: string): void {
-    let cart: any = [];
-    cart = JSON.parse(localStorage.getItem('cart'));
+    let cart: any = JSON.parse(localStorage.getItem('cart')) || [];
     if (id) {
       var item: Item = {
         product: this.productService.find(id),
         quantity: 1
       };
-      if (!cart) {
+      if (!cart || !cart.length) {
         cart.push(item);
       } else {
         let found: boolean = false;
