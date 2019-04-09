@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WishlistService } from 'src/app/services/wishlist.service';
+import { Product } from 'src/app/product';
 
 @Component({
   selector: 'app-wishlist',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent implements OnInit {
+  private products: Product[] = [];
 
-  constructor() { }
+  constructor(
+    private wishlistService: WishlistService
+  ) {}
 
   ngOnInit() {
+    this.products = this.wishlistService.loadWishlist();
+  }
+
+  removeFromWishlist(id: string):void{
+    this.wishlistService.remove(id);
+    this.products = this.wishlistService.loadWishlist();
   }
 
 }
