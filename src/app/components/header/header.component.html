@@ -2,24 +2,26 @@
   <div class="container">
     <ul class="nav justify-content-end">
       <li class="nav-item">
-        <a class="nav-link" routerLink="products" routerLinkActive="active">Home</a>
+        <a class="nav-link" [routerLink]="['products']" routerLinkActive="active">Home</a>
       </li>
       <li class="nav-item" [hidden]="authenticated">
-        <a class="nav-link" routerLink="login" routerLinkActive="active" >Login</a>
+        <a class="nav-link" [routerLink]="['login']" routerLinkActive="active" >Login</a>
       </li>
       <li class="nav-item" [hidden]="authenticated">
-        <a class="nav-link" routerLink="register" routerLinkActive="active" >Register</a>
+        <a class="nav-link" [routerLink]="['register']" routerLinkActive="active" >Register</a>
       </li>
       <li class="nav-item" [hidden]="!authenticated">
-        <a class="nav-link"routerLink="wishlist"><i class="fas fa-heart"></i></a>
+        <a class="nav-link"[routerLink]="['wishlist']"><i class="fas fa-heart"></i></a>
       </li>
       <li class="nav-item" [hidden]="!authenticated">
-          <a class="nav-link" routerLink="cart"><i class="fa fa-shopping-cart" >&#xf07a;</i>
+          <a class="nav-link" [routerLink]="['cart']"><i class="fa fa-shopping-cart" >&#xf07a;</i>
             <span class='badge badge-warning' id='lblCartCount' [hidden]="!show"> {{cartCount}} </span></a>
       </li>
+      <li class="nav-item" [hidden]="!authenticated">
+          <a class="nav-link" href="javascript:void(0);" (click)="logout()">Logout</a>
+        </li>
     </ul>
   </div>
 </nav>
-{{authenticated}}
 <br>
 
