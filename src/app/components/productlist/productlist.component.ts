@@ -5,6 +5,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { StreamService } from 'src/app/services/stream.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-productlist',
@@ -19,7 +20,8 @@ export class ProductlistComponent implements OnInit {
     private cartService: CartService,
     private streamService: StreamService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private wishlistService: WishlistService
   ) {}
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class ProductlistComponent implements OnInit {
   }
 
   addToCart(id) {
-    if(this.auth.getIsAuthenticated()){
+    if(this.isUserLoggedIn()){
       this.cartService.add(id);
       this.streamService.setCartCount(this.cartService.calculateTotalItems().toString());
     }
@@ -37,12 +39,18 @@ export class ProductlistComponent implements OnInit {
   }
 
   addToWishlist(id){
-    if(this.auth.getIsAuthenticated()){
-      console.log("wishlist",id);
+    if(this.isUserLoggedIn()){
+      this.wishlistService.add(id);
     }
     else{
       this.router.navigate(['login']);   
     }
+  }
+
+  isUserLoggedIn(){
+    let loggedin: any;
+    this.streamService.getAuthenticated().subscribe(res => loggedin = res);
+    return (loggedin =="true");
   }
 
 }

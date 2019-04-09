@@ -4,7 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from "../../product";
 import { CartService } from 'src/app/services/cart.service';
 import { StreamService } from 'src/app/services/stream.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class SingleproductComponent implements OnInit {
     private productService: ProductService, 
     private cartService: CartService,
     private streamService: StreamService,
-    private auth: AuthService
+    private wishlistService: WishlistService
   ) {}
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class SingleproductComponent implements OnInit {
   }
 
   addToCart(id) {
-    if(this.auth.getIsAuthenticated()){
+    if(this.isUserLoggedIn()){
       this.cartService.add(id);
       this.streamService.setCartCount(this.cartService.calculateTotalItems().toString());
     }
@@ -42,12 +42,18 @@ export class SingleproductComponent implements OnInit {
   }
 
   addToWishlist(id){
-    if(this.auth.getIsAuthenticated()){
-      console.log("wishlist",id);
+    if(this.isUserLoggedIn()){
+      this.wishlistService.add(id);
     }
     else{
       this.router.navigate(['login']);   
     }
+  }
+
+  isUserLoggedIn(){
+    let loggedin: any;
+    this.streamService.getAuthenticated().subscribe(res => loggedin = res);
+    return (loggedin =="true");
   }
 
 }
