@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Item } from "../item";
 
@@ -10,7 +9,9 @@ import { Item } from "../item";
 export class CartService {
   private items: Item[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService) {}
+  constructor(
+    private productService: ProductService
+  ) {}
 
   loadCart(): Item[] {
     this.items = [];
