@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   cartCount: any;
-  show : boolean = false;
   authenticated: any;
 
   constructor(
@@ -26,9 +25,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.cartCount>0){
-      this.show = true;
-    }
   }
 
   logout(){
